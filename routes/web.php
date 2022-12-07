@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('temp/{path}', function (string $path){
+Route::middleware('signature')->get('temp/download/{path}', function (string $path){
     return \Illuminate\Support\Facades\Storage::disk('local')->download($path);
-})->name('temp');
+})->name('temp.download');

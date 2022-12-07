@@ -7,6 +7,7 @@ use App\Http\Resources\CarResource;
 use App\Models\Car;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\URL;
 
 class CarService implements CarServiceInterface
 {
@@ -59,8 +60,8 @@ class CarService implements CarServiceInterface
     }
 
     private function getTempUrl(string $path): string{
-        $tempUrl = Storage::disk('local')->temporaryUrl(
-            $path, now()->addMinutes(10)
+        $tempUrl = URL::temporarySignedRoute(
+            'temp.download', now()->addMinutes(10), ['path' => $path]
         );
 
         return $tempUrl;
