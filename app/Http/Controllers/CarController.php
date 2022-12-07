@@ -15,7 +15,7 @@ class CarController extends Controller
 
     public function index()
     {
-
+        return $this->carService->getAllRecords();
     }
 
     public function store(StoreCarRequest $request)
