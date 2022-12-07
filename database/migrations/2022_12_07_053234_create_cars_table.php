@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('description', 250);
-            $table->string('file', 50);
+            $table->string('file', 100);
             $table->enum('type', [1, 2, 3]);
             $table->timestamps();
         });

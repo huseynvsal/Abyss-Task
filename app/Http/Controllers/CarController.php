@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\Car\StoreCarRequest;
+use App\Models\Car;
 use App\Services\CarServiceInterface;
 
 class CarController extends Controller
@@ -23,13 +24,18 @@ class CarController extends Controller
         $this->carService->storeRecord($request);
 
         return response()->json([
-            'code' => 200,
-            'message' => 'Record stored successfully'
+            'code' => 201,
+            'message' => 'Record created successfully'
         ]);
     }
 
-    public function show($id)
+    public function show(Car $car)
     {
-        //
+        $data = $this->carService->getSingleRecord($car);
+        return response()->json([
+            'code' => 200,
+            'message' => 'Car with id '.$car->id.' fetched successfully',
+            'data' => $data
+        ]);
     }
 }

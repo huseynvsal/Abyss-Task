@@ -26,8 +26,17 @@ class CarService implements CarServiceInterface
 
     }
 
-    public function getSingleRecord(){
+    public function getSingleRecord(Car $car): array{
+        $tempUrl = $this->getTempUrl($car->file);
 
+        $data = [
+            'name' => $car->name,
+            'description' => $car->description,
+            'file' => $tempUrl,
+            'type' => $car->type
+        ];
+
+        return $data;
     }
 
     private function saveDataInDB(Request $request){
@@ -41,11 +50,19 @@ class CarService implements CarServiceInterface
         $car->save();
     }
 
-    private function saveFileInPrivateFolder(Request $request): bool
+    private function saveFileInPrivateFolder(Request $request): string
     {
-        $filePath = now()->addHours(4) . '/' . $request->ip();
         $file = $request->file('file');
-        $filePath = Storage::put($filePath, $file, 'private');
+
+        $filePath = Storage::put(null, $file, 'private');
         return $filePath;
+    }
+
+    private function getTempUrl(string $path): string{
+        $tempUrl = Storage::disk('local')->temporaryUrl(
+            $path, now()->addMinutes(10)
+        );
+
+        return $tempUrl;
     }
 }

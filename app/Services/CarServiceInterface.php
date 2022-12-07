@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Http\Resources\CarResource;
+use App\Models\Car;
 use Illuminate\Http\Request;
 
 interface CarServiceInterface
@@ -11,5 +12,5 @@ interface CarServiceInterface
 
     public function storeRecord(Request $request): void;
 
-    public function getSingleRecord();
+    public function getSingleRecord(Car $car): array;
 }
