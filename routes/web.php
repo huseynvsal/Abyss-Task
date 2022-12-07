@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('local/temp/{path}', function (string $path){
+Route::get('temp/{path}', function (string $path){
     return \Illuminate\Support\Facades\Storage::disk('local')->download($path);
-})->name('local.temp');
+})->name('temp');

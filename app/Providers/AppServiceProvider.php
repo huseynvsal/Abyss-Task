@@ -29,7 +29,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Storage::disk('local')->buildTemporaryUrlsUsing(function ($path, $expiration, $options) {
             return URL::temporarySignedRoute(
-                'local.temp',
+                'temp',
                 $expiration,
                 array_merge($options, ['path' => $path])
             );
