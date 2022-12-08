@@ -45,14 +45,13 @@ php artisan delete:records {days}
 
 `{days}` - The number of days of old records that you are going delete
 
-# Testing
+# Seeding
 
-### Testing the application
-Run this command to execute testing
+### Bulk Upload data to Database
+Run this command to bulk upload fake data to database
 ```sh
-php artisan test
+php artisan db:seed
 ```
-All testing classes are in ```tests/Feature``` folder
 
 ## Possible issues
 If you are having some problem to access API routes follow these steps:
