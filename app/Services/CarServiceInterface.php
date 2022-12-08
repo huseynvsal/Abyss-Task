@@ -13,4 +13,6 @@ interface CarServiceInterface
     public function storeRecord(Request $request): void;
 
     public function getSingleRecord(Car $car): array;
+
+    public function deleteRecords(int $days): void;
 }

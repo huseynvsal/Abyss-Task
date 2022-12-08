@@ -66,4 +66,12 @@ class CarService implements CarServiceInterface
 
         return $tempUrl;
     }
+
+    public function deleteRecords(int $days): void{
+        $cars = Car::where('created_at', '<', now()->subDays($days)->startOfDay());
+        foreach ($cars->get() as $car){
+            Storage::delete($car->file);
+        }
+        $cars->delete();
+    }
 }
